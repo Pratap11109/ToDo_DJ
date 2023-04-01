@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %}
+<h1>Signup</h1>
+{% block content %}
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="col-md-6">
+      <div class="container">
+        <h1>SignUp</h1>
+        <form method="POST" class="fm-container">
+          {% csrf_token %} {% for fm in form %}
+          <small class="text text-danger">{{ fm.errors }} </small>
+          {{ fm.label_tag }} {{ fm }} <br /><br />
+          {% endfor %}
+          <button type="submit" class="btn btn-primary btn-block mb-3">
+            Sign in
+          </button>
+        </form>
+        <a href="{% url 'login' %}" class="btn btn-primary btn-block mb-3"
+          >Login</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
